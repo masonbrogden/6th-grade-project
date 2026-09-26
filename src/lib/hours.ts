@@ -10,6 +10,11 @@
 export type Weekday = "Sun" | "Mon" | "Tue" | "Wed" | "Thu" | "Fri" | "Sat";
 
 export type SchoolHoursConfig = {
+  /**
+   * Bypass the gate entirely and treat every moment as open.
+   * Intended for local development only — see the TEMPORARY note below.
+   */
+  alwaysOpen: boolean;
   /** IANA timezone for the school. */
   timeZone: string;
   /** Opening time, 24-hour "HH:MM", in `timeZone`. Inclusive. */
@@ -22,6 +27,10 @@ export type SchoolHoursConfig = {
 
 /** ⚠️ PLACEHOLDER values — confirm the real bell schedule and timezone. */
 export const SCHOOL_HOURS: SchoolHoursConfig = {
+  // ⚠️ TEMPORARY — the gate is held open so the site is usable at any hour
+  //    while it's being built. Set this to false before students use it, and
+  //    the start/end/activeWeekdays below take over again.
+  alwaysOpen: true,
   timeZone: "America/New_York",
   start: "08:00",
   end: "15:30",
@@ -46,6 +55,10 @@ function toMinutes(clock: string): number {
  * 3:29 PM is in and 3:30 PM is out.
  */
 export function isWithinSchoolHours(now: Date): boolean {
+  if (SCHOOL_HOURS.alwaysOpen) {
+    return true;
+  }
+
   const parts = new Intl.DateTimeFormat("en-US", {
     timeZone: SCHOOL_HOURS.timeZone,
     weekday: "short",
