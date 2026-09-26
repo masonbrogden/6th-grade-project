@@ -1,0 +1,91 @@
+@import "tailwindcss";
+
+/* ---------------------------------------------------------------
+   Design tokens — "Trailhead" palette
+   Warm, papery, outdoorsy. Never stark white: use --warm-white.
+   --------------------------------------------------------------- */
+:root {
+  /* Primary — forest green */
+  --forest: #1f4d3d;
+  --forest-deep: #143427;
+  --forest-tint: #e7eeea;
+
+  /* Background — parchment */
+  --parchment: #faf6ee;
+  --parchment-deep: #f1e9d9;
+
+  /* Accent — amber */
+  --amber: #d9822b;
+  --amber-shade: #b8661c;
+  --amber-tint: #f8e3c6;
+
+  /* Secondary text / borders — trail brown */
+  --trail: #6b4a34;
+  --trail-light: #8d6a52;
+  --trail-deep: #4a3123;
+
+  /* Surfaces — warm off-white, deliberately not #ffffff */
+  --warm-white: #fffdf8;
+  --border: #e4d9c5;
+
+  /* Semantic aliases */
+  --background: var(--parchment);
+  --surface: var(--warm-white);
+  --foreground: var(--forest);
+  --muted: var(--trail);
+
+  color-scheme: light;
+}
+
+@theme inline {
+  /* Colors */
+  --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+
+  --color-forest: var(--forest);
+  --color-forest-deep: var(--forest-deep);
+  --color-forest-tint: var(--forest-tint);
+  --color-parchment: var(--parchment);
+  --color-parchment-deep: var(--parchment-deep);
+  --color-amber: var(--amber);
+  --color-amber-shade: var(--amber-shade);
+  --color-amber-tint: var(--amber-tint);
+  --color-trail: var(--trail);
+  --color-trail-light: var(--trail-light);
+  --color-trail-deep: var(--trail-deep);
+  --color-warm-white: var(--warm-white);
+  --color-border: var(--border);
+
+  /* Typography */
+  --font-sans: var(--font-inter);
+  --font-heading: var(--font-fraunces);
+
+  /* Elevation — warm-tinted, never neutral gray */
+  --shadow-card: 0 1px 2px rgba(74, 49, 35, 0.06), 0 8px 24px rgba(74, 49, 35, 0.08);
+  --shadow-lift: 0 2px 4px rgba(74, 49, 35, 0.08), 0 16px 40px rgba(74, 49, 35, 0.12);
+
+  --radius-card: 1rem;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-fraunces), ui-serif, Georgia, serif;
+  letter-spacing: -0.015em;
+}
+
+::selection {
+  background: var(--amber-tint);
+  color: var(--forest-deep);
+}
