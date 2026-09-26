@@ -5,6 +5,12 @@ import Link from "next/link";
 
 import ScoutMascot from "@/components/ScoutMascot";
 import { CLASSES, type ClassInfo } from "@/lib/classes";
+import {
+  CHIP_CLASSES,
+  accents,
+  splitUnit,
+  topicLabel,
+} from "@/lib/classDisplay";
 
 /* Scenery tints, mixed from --forest toward --parchment. Kept local to this
    page because they exist only for the illustration, not for UI. */
@@ -14,50 +20,6 @@ const RIDGE_NEAR = "var(--forest)";
 const TREE = "var(--forest-deep)";
 const GROUND = "var(--parchment-deep)";
 
-/** Content is still stubbed; drop this once the real curriculum lands. */
-function stripPlaceholder(text: string): string {
-  return text.replace(/^PLACEHOLDER\s*—\s*/, "");
-}
-
-/** "Earth's Systems: how water moves" -> heading + supporting line. */
-function splitUnit(unit: string): { title: string; detail: string | null } {
-  const clean = stripPlaceholder(unit);
-  const separator = clean.indexOf(": ");
-  if (separator === -1) return { title: clean, detail: null };
-  return {
-    title: clean.slice(0, separator),
-    detail: clean.slice(separator + 2),
-  };
-}
-
-/** Topics read "the water cycle: evaporation, ..." — the head makes a chip. */
-function topicLabel(topic: string): string {
-  const clean = stripPlaceholder(topic);
-  return clean.split(":")[0].trim();
-}
-
-/* Topic wording is the teacher's, so chips truncate rather than wrap. `min-w-0`
-   is load-bearing: a flex item defaults to min-width:auto and would otherwise
-   refuse to shrink below its text, pushing the whole page wider than the phone. */
-const CHIP_CLASSES =
-  "min-w-0 max-w-full truncate rounded-full px-3 py-1 text-xs font-medium";
-
-const accents = {
-  forest: {
-    numeral: "bg-forest text-parchment",
-    chip: "bg-forest-tint text-forest",
-    rule: "bg-forest",
-    cue: "text-forest",
-    hoverBorder: "group-hover:border-forest",
-  },
-  amber: {
-    numeral: "bg-amber text-warm-white",
-    chip: "bg-amber-tint text-trail-deep",
-    rule: "bg-amber",
-    cue: "text-amber-shade",
-    hoverBorder: "group-hover:border-amber",
-  },
-} as const;
 
 export default function Home() {
   const reduceMotion = useReducedMotion();
