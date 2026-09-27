@@ -61,7 +61,7 @@ export default async function ClassPage({ params }: ClassPageProps) {
         <div className="relative mx-auto w-full max-w-3xl">
           <Link
             href="/"
-            className="group inline-flex items-center gap-2 text-sm font-medium text-trail transition-colors hover:text-forest"
+            className="group -my-3 inline-flex min-h-11 items-center gap-2 py-3 text-sm font-medium text-trail transition-colors hover:text-forest"
           >
             <span
               aria-hidden
@@ -89,7 +89,7 @@ export default async function ClassPage({ params }: ClassPageProps) {
           </div>
 
           <div className="mt-7 rounded-3xl border border-border bg-surface p-6 shadow-card">
-            <p className="text-[0.7rem] font-semibold uppercase tracking-[0.16em] text-trail-light">
+            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-trail-light">
               Current unit
             </p>
             <h2 className="mt-1.5 font-heading text-xl font-semibold leading-snug text-forest">
@@ -109,7 +109,7 @@ export default async function ClassPage({ params }: ClassPageProps) {
 
             {classInfo.outdoorEdConnection ? (
               <div className="mt-6 border-t border-border pt-5">
-                <p className="text-[0.7rem] font-semibold uppercase tracking-[0.16em] text-amber-shade">
+                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-amber-shade">
                   On the Outdoor Ed trip
                 </p>
                 <p className="mt-2 text-sm leading-relaxed text-trail">

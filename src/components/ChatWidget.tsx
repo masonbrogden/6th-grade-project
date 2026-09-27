@@ -1,6 +1,11 @@
 "use client";
 
-import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import {
+  AnimatePresence,
+  MotionConfig,
+  motion,
+  useReducedMotion,
+} from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 
 import ScoutMascot from "@/components/ScoutMascot";
@@ -103,127 +108,131 @@ export default function ChatWidget({
   const showStarters = messages.length === 0 && starters.length > 0;
 
   return (
-    <div className="flex flex-col overflow-hidden rounded-3xl border border-border bg-surface shadow-card">
-      {/* Header */}
-      <div className="flex items-center gap-3 border-b border-border bg-parchment px-5 py-4">
-        <ScoutMascot size={40} />
-        <div className="min-w-0">
-          <p className="font-heading text-base font-semibold leading-tight text-forest">
-            Ask Scout
-          </p>
-          <p className="truncate text-xs text-trail-light">
-            Hints and questions — never the answers
-          </p>
-        </div>
-      </div>
-
-      {/* Transcript */}
-      <div
-        ref={scrollRef}
-        role="log"
-        aria-live="polite"
-        aria-label="Conversation with Scout"
-        className="flex min-h-[15rem] max-h-[26rem] flex-col gap-4 overflow-y-auto px-5 py-6 sm:min-h-[17rem] sm:max-h-[30rem]"
-      >
-        <ScoutBubble>{greeting}</ScoutBubble>
-
-        <AnimatePresence initial={false}>
-          {messages.map((message) =>
-            message.role === "assistant" ? (
-              <motion.div
-                key={message.id}
-                {...slideIn}
-                transition={{ duration: 0.32, ease: [0.22, 1, 0.36, 1] }}
-              >
-                <ScoutBubble>{message.content}</ScoutBubble>
-              </motion.div>
-            ) : (
-              <motion.div
-                key={message.id}
-                {...slideIn}
-                transition={{ duration: 0.32, ease: [0.22, 1, 0.36, 1] }}
-                className="flex justify-end"
-              >
-                <p className="max-w-[85%] whitespace-pre-wrap rounded-2xl rounded-br-md bg-forest px-4 py-2.5 text-sm leading-relaxed text-parchment">
-                  {message.content}
-                </p>
-              </motion.div>
-            ),
-          )}
-        </AnimatePresence>
-
-        {isSending ? <ThinkingIndicator reduceMotion={!!reduceMotion} /> : null}
-      </div>
-
-      {/* Starters */}
-      {showStarters ? (
-        <div className="flex flex-wrap gap-2 border-t border-border bg-parchment px-5 py-4">
-          {starters.map((starter) => (
-            <button
-              key={starter}
-              type="button"
-              onClick={() => send(starter)}
-              className="rounded-full border border-border bg-surface px-3.5 py-1.5 text-xs font-medium text-trail transition-colors hover:border-amber hover:text-amber-shade"
-            >
-              {starter}
-            </button>
-          ))}
-        </div>
-      ) : null}
-
-      {/* Composer */}
-      <form
-        onSubmit={(event) => {
-          event.preventDefault();
-          send(draft);
-        }}
-        className="border-t border-border bg-parchment px-5 py-4"
-      >
-        <div className="flex items-end gap-3">
-          <label htmlFor="scout-input" className="sr-only">
-            Ask Scout a question
-          </label>
-          <textarea
-            id="scout-input"
-            ref={inputRef}
-            rows={1}
-            value={draft}
-            maxLength={MAX_CHARS}
-            disabled={isClosed}
-            placeholder={
-              isClosed ? "Scout is off the trail" : "Ask Scout a question…"
-            }
-            onChange={(event) => setDraft(event.target.value)}
-            onKeyDown={(event) => {
-              if (event.key === "Enter" && !event.shiftKey) {
-                event.preventDefault();
-                send(draft);
-              }
-            }}
-            className="max-h-32 min-h-[2.75rem] flex-1 resize-none rounded-2xl border border-border bg-surface px-4 py-3 text-sm text-forest placeholder:text-trail-light focus:border-amber focus:outline-none focus:ring-2 focus:ring-amber/30 disabled:opacity-60"
-          />
-          <motion.button
-            type="submit"
-            disabled={!draft.trim() || isSending || isClosed}
-            whileHover={reduceMotion ? undefined : { y: -2 }}
-            whileTap={{ scale: 0.97 }}
-            className="flex h-11 shrink-0 items-center gap-2 rounded-full bg-amber px-5 text-sm font-semibold text-warm-white transition-opacity disabled:opacity-40"
-          >
-            Send
-            <span aria-hidden>→</span>
-          </motion.button>
+    <MotionConfig reducedMotion="user">
+      <div className="flex flex-col overflow-hidden rounded-3xl border border-border bg-surface shadow-card">
+        {/* Header */}
+        <div className="flex items-center gap-3 border-b border-border bg-parchment px-5 py-4">
+          <ScoutMascot size={40} />
+          <div className="min-w-0">
+            <p className="font-heading text-base font-semibold leading-tight text-forest">
+              Ask Scout
+            </p>
+            <p className="truncate text-xs text-trail-light">
+              Hints and questions — never the answers
+            </p>
+          </div>
         </div>
 
-        <div className="mt-2 flex items-center justify-between text-[0.7rem] text-trail-light">
-          <span>Enter to send · Shift + Enter for a new line</span>
-          {draft.length > MAX_CHARS - 120 ? (
-            <span>
-              {draft.length}/{MAX_CHARS}
-            </span>
+        {/* Transcript */}
+        <div
+          ref={scrollRef}
+          role="log"
+          aria-live="polite"
+          aria-label="Conversation with Scout"
+          className="flex min-h-[15rem] max-h-[26rem] flex-col gap-4 overflow-y-auto px-5 py-6 sm:min-h-[17rem] sm:max-h-[30rem]"
+        >
+          <ScoutBubble>{greeting}</ScoutBubble>
+
+          <AnimatePresence initial={false}>
+            {messages.map((message) =>
+              message.role === "assistant" ? (
+                <motion.div
+                  key={message.id}
+                  {...slideIn}
+                  transition={{ duration: 0.32, ease: [0.22, 1, 0.36, 1] }}
+                >
+                  <ScoutBubble>{message.content}</ScoutBubble>
+                </motion.div>
+              ) : (
+                <motion.div
+                  key={message.id}
+                  {...slideIn}
+                  transition={{ duration: 0.32, ease: [0.22, 1, 0.36, 1] }}
+                  className="flex justify-end"
+                >
+                  <p className="max-w-[85%] whitespace-pre-wrap rounded-2xl rounded-br-md bg-forest px-4 py-2.5 text-sm leading-relaxed text-parchment">
+                    {message.content}
+                  </p>
+                </motion.div>
+              ),
+            )}
+          </AnimatePresence>
+
+          {isSending ? (
+            <ThinkingIndicator reduceMotion={!!reduceMotion} />
           ) : null}
         </div>
-      </form>
-    </div>
+
+        {/* Starters */}
+        {showStarters ? (
+          <div className="flex flex-wrap gap-2 border-t border-border bg-parchment px-5 py-4">
+            {starters.map((starter) => (
+              <button
+                key={starter}
+                type="button"
+                onClick={() => send(starter)}
+                className="min-h-11 rounded-full border border-border bg-surface px-4 py-2.5 text-xs font-medium text-trail transition-colors hover:border-amber hover:text-amber-shade"
+              >
+                {starter}
+              </button>
+            ))}
+          </div>
+        ) : null}
+
+        {/* Composer */}
+        <form
+          onSubmit={(event) => {
+            event.preventDefault();
+            send(draft);
+          }}
+          className="border-t border-border bg-parchment px-5 py-4"
+        >
+          <div className="flex items-end gap-3">
+            <label htmlFor="scout-input" className="sr-only">
+              Ask Scout a question
+            </label>
+            <textarea
+              id="scout-input"
+              ref={inputRef}
+              rows={1}
+              value={draft}
+              maxLength={MAX_CHARS}
+              disabled={isClosed}
+              placeholder={
+                isClosed ? "Scout is off the trail" : "Ask Scout a question…"
+              }
+              onChange={(event) => setDraft(event.target.value)}
+              onKeyDown={(event) => {
+                if (event.key === "Enter" && !event.shiftKey) {
+                  event.preventDefault();
+                  send(draft);
+                }
+              }}
+              className="max-h-32 min-h-[2.75rem] flex-1 resize-none rounded-2xl border border-border bg-surface px-4 py-3 text-sm text-forest placeholder:text-trail-light focus:border-amber focus:outline-none focus:ring-2 focus:ring-amber/30 disabled:opacity-60"
+            />
+            <motion.button
+              type="submit"
+              disabled={!draft.trim() || isSending || isClosed}
+              whileHover={reduceMotion ? undefined : { y: -2 }}
+              whileTap={{ scale: 0.97 }}
+              className="flex h-11 shrink-0 items-center gap-2 rounded-full bg-amber px-5 text-sm font-semibold text-warm-white transition-opacity disabled:opacity-40"
+            >
+              Send
+              <span aria-hidden>→</span>
+            </motion.button>
+          </div>
+
+          <div className="mt-2 flex items-center justify-between text-xs text-trail-light">
+            <span>Enter to send · Shift + Enter for a new line</span>
+            {draft.length > MAX_CHARS - 120 ? (
+              <span>
+                {draft.length}/{MAX_CHARS}
+              </span>
+            ) : null}
+          </div>
+        </form>
+      </div>
+    </MotionConfig>
   );
 }
 

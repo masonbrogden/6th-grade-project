@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+  <title>Scout</title>
+  <!-- Simplified Scout for small sizes: bigger eyes, heavier ears, no smile or
+       eye highlights. The full mascot (ScoutMascot.tsx) muds up below ~24px. -->
+  <path d="M30 58 L12 6 L60 40 Z" fill="#d9822b"/>
+  <path d="M98 58 L116 6 L68 40 Z" fill="#d9822b"/>
+  <path d="M64 44 C86 44 104 50 108 63 C111 76 97 97 76 112 C71 116 68 120 64 120 C60 120 57 116 52 112 C31 97 17 76 20 63 C24 50 42 44 64 44 Z" fill="#d9822b"/>
+  <path d="M64 60 C73 67 84 78 87 91 C89 98 78 106 70 112 C67 114 66 117 64 117 C62 117 61 114 58 112 C50 106 39 98 41 91 C44 78 55 67 64 60 Z" fill="#fffdf8"/>
+  <circle cx="43" cy="68" r="7" fill="#1f4d3d"/>
+  <circle cx="85" cy="68" r="7" fill="#1f4d3d"/>
+  <path d="M55 86 Q64 80 73 86 Q68 96 64 96 Q60 96 55 86 Z" fill="#1f4d3d"/>
+  <path d="M40 47 L44 22 Q64 9 84 22 L88 47 Z" fill="#6b4a34"/>
+  <path d="M43 27 L85 27 L87 39 L41 39 Z" fill="#1f4d3d"/>
+  <ellipse cx="64" cy="48" rx="48" ry="10" fill="#4a3123"/>
+</svg>

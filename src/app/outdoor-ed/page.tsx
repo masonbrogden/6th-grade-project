@@ -87,7 +87,7 @@ export default function OutdoorEdPage() {
         <div className="relative mx-auto w-full max-w-3xl px-6 pb-4 pt-8">
           <Link
             href="/"
-            className="group inline-flex items-center gap-2 text-sm font-medium text-trail transition-colors hover:text-forest"
+            className="group -my-3 inline-flex min-h-11 items-center gap-2 py-3 text-sm font-medium text-trail transition-colors hover:text-forest"
           >
             <span
               aria-hidden
@@ -161,7 +161,7 @@ export default function OutdoorEdPage() {
                   ["Back", TRIP.returning],
                 ].map(([label, value]) => (
                   <div key={label}>
-                    <dt className="text-[0.7rem] font-semibold uppercase tracking-[0.16em] text-trail-light">
+                    <dt className="text-xs font-semibold uppercase tracking-[0.16em] text-trail-light">
                       {label}
                     </dt>
                     <dd className="mt-1 leading-relaxed text-trail">
@@ -203,7 +203,7 @@ export default function OutdoorEdPage() {
               <div className="mt-5 flex flex-col gap-5">
                 {TRIP.schedule.map((day) => (
                   <div key={day.day}>
-                    <p className="text-[0.7rem] font-semibold uppercase tracking-[0.16em] text-amber-shade">
+                    <p className="text-xs font-semibold uppercase tracking-[0.16em] text-amber-shade">
                       {stripPlaceholder(day.day)}
                     </p>
                     <ul className="mt-2 flex flex-col gap-1.5 text-sm">
