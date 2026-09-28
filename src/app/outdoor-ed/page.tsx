@@ -3,7 +3,7 @@ import Link from "next/link";
 
 import ScoutMascot from "@/components/ScoutMascot";
 import { RidgeScene, TrailMarker, TreeLine } from "@/components/Scenery";
-import { CLASSES } from "@/lib/classes";
+import { PUBLISHED_CLASSES } from "@/lib/classes";
 import {
   accentForGrade,
   accents,
@@ -13,55 +13,83 @@ import {
 
 export const metadata: Metadata = {
   title: "Outdoor Ed — Class, but outside",
-  description: "Where we're going, what to pack, and how the trip ties into class.",
+  description:
+    "Where we're going, what to pack, and how the trip ties into class.",
 };
 
 /**
- * ⚠️ EVERY VALUE BELOW IS PLACEHOLDER. Each string is prefixed with
- * "PLACEHOLDER —" so `grep -rn "PLACEHOLDER —" src/` finds them all. The draft
- * banner in the trip section stays up until these are real — delete it then.
+ * Program facts come from the MCPS Outdoor Environmental Education material.
+ * Anything still unknown is prefixed "PLACEHOLDER —" and covered by the draft
+ * banner in the trip section; delete the banner once none are left.
  */
 const TRIP = {
-  dates: "PLACEHOLDER — Tuesday, May 12 to Thursday, May 14",
-  place: "PLACEHOLDER — Pine Hollow Outdoor Science Center",
-  leaving: "PLACEHOLDER — Bus loads at 7:15 AM in the north lot",
-  returning: "PLACEHOLDER — Back at school by 4:00 PM on Thursday",
+  dates: "PLACEHOLDER — dates to be confirmed",
+  length: "Three days and two nights, staying overnight on site",
+  place:
+    "One of three environmental education sites. The LE Smith Center is run by MCPS; the other two are privately owned sites MCPS contracts each year. Your school will tell you which one you are assigned.",
+  staffing:
+    "Your own teachers come along and teach alongside the site's outdoor environmental educator.",
+  leaving: "PLACEHOLDER — departure time and pickup point to be confirmed",
+  returning: "PLACEHOLDER — return time to be confirmed",
   bring: [
-    "PLACEHOLDER — Sleeping bag and a pillow",
-    "PLACEHOLDER — Refillable water bottle",
-    "PLACEHOLDER — Rain jacket and a warm layer",
-    "PLACEHOLDER — Broken-in shoes you can get muddy",
-    "PLACEHOLDER — Field notebook and two pencils",
-    "PLACEHOLDER — Toothbrush, soap, and a towel",
+    "PLACEHOLDER — packing list to be confirmed by your school",
+    "PLACEHOLDER — sleeping bag and a pillow",
+    "PLACEHOLDER — refillable water bottle",
+    "PLACEHOLDER — rain jacket and a warm layer",
+    "PLACEHOLDER — broken-in shoes you can get muddy",
+    "PLACEHOLDER — field notebook and two pencils",
   ],
-  leave: "PLACEHOLDER — Leave phones, snacks, and anything valuable at home.",
-  schedule: [
-    {
-      day: "PLACEHOLDER — Day one",
-      items: [
-        "PLACEHOLDER — Arrive, drop bags, and walk the property",
-        "PLACEHOLDER — Creek study: temperature, speed, and what lives there",
-        "PLACEHOLDER — Campfire and night sky",
-      ],
-    },
-    {
-      day: "PLACEHOLDER — Day two",
-      items: [
-        "PLACEHOLDER — Meadow and forest-edge surveys",
-        "PLACEHOLDER — Soil pits and erosion walk",
-        "PLACEHOLDER — Field notebooks and group share-out",
-      ],
-    },
-    {
-      day: "PLACEHOLDER — Day three",
-      items: [
-        "PLACEHOLDER — Morning bird walk",
-        "PLACEHOLDER — Pack up and clean cabins",
-        "PLACEHOLDER — Closing circle, then buses home",
-      ],
-    },
-  ],
+  leave: "PLACEHOLDER — your school will confirm what to leave at home.",
 };
+
+/** The lesson menu from the MCPS program material. Schools pick four or five. */
+const LESSONS = [
+  {
+    name: "Stream/Pond Investigation",
+    detail:
+      "Investigate the interactions within the local watershed and work in groups to assess the health of a nearby stream or pond.",
+  },
+  {
+    name: "Exploring the Watershed Using Map and Compass",
+    detail:
+      "Survey the surrounding forest and riparian buffers in the local watershed, navigating by map and compass.",
+  },
+  {
+    name: "Confidence Course",
+    detail:
+      "A series of mentally and physically challenging team and individual events built to strengthen teamwork, cooperation, and self-esteem.",
+  },
+  {
+    name: "Predator/Prey Relationships",
+    detail:
+      "Explore the predator-prey relationships animals exhibit in our local ecosystem through an outdoor simulation.",
+  },
+  {
+    name: "Patterns of Settlement",
+    detail:
+      "Collect environmental and geographic data using GPS units to decide which location has the best settlement potential.",
+  },
+  {
+    name: "Treasure Earth",
+    detail:
+      "Work in groups to collect data on our natural resources through geocaching.",
+  },
+  {
+    name: "Site History Lessons",
+    detail:
+      "Lessons drawn from the history of the outdoor education sites themselves.",
+  },
+  {
+    name: "Student Service Learning",
+    detail:
+      "An environmental stewardship lesson — habitat improvement, energy conservation, or protecting natural resources.",
+  },
+  {
+    name: "Evening Activities",
+    detail:
+      "Instruction does not stop at sundown. After dinner there are indoor and outdoor activities chosen by your school.",
+  },
+];
 
 export default function OutdoorEdPage() {
   return (
@@ -139,9 +167,11 @@ export default function OutdoorEdPage() {
               ✎
             </span>
             <span>
-              <strong className="font-semibold">Draft details.</strong> Dates,
-              packing list, and schedule below are placeholders while the trip
-              is being planned — don&apos;t pack from this page yet.
+              <strong className="font-semibold">
+                Dates and packing list aren&apos;t final.
+              </strong>{" "}
+              The program details below are from MCPS, but times and what to
+              bring come from your school — don&apos;t pack from this page yet.
             </span>
           </p>
 
@@ -198,35 +228,74 @@ export default function OutdoorEdPage() {
             {/* Schedule */}
             <div className="rounded-3xl border border-border bg-surface p-7 shadow-card">
               <h3 className="font-heading text-lg font-semibold text-forest">
-                Rough schedule
+                How it works
               </h3>
-              <div className="mt-5 flex flex-col gap-5">
-                {TRIP.schedule.map((day) => (
-                  <div key={day.day}>
-                    <p className="text-xs font-semibold uppercase tracking-[0.16em] text-amber-shade">
-                      {stripPlaceholder(day.day)}
-                    </p>
-                    <ul className="mt-2 flex flex-col gap-1.5 text-sm">
-                      {day.items.map((item) => (
-                        <li
-                          key={item}
-                          className="flex items-start gap-2.5 leading-relaxed text-trail"
-                        >
-                          <span
-                            aria-hidden
-                            className="mt-[0.45rem] h-1.5 w-1.5 shrink-0 rounded-full bg-forest-tint"
-                          />
-                          <span className="min-w-0">
-                            {stripPlaceholder(item)}
-                          </span>
-                        </li>
-                      ))}
-                    </ul>
+              <dl className="mt-5 flex flex-col gap-4 text-sm">
+                {[
+                  ["How long", TRIP.length],
+                  ["Who teaches", TRIP.staffing],
+                  [
+                    "Lessons",
+                    "Schools pick four or five of the lessons below, plus evening activities.",
+                  ],
+                ].map(([label, value]) => (
+                  <div key={label}>
+                    <dt className="text-xs font-semibold uppercase tracking-[0.16em] text-trail-light">
+                      {label}
+                    </dt>
+                    <dd className="mt-1 leading-relaxed text-trail">{value}</dd>
                   </div>
                 ))}
-              </div>
+              </dl>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* ---------------------------------------------------------------
+          Lesson menu
+          --------------------------------------------------------------- */}
+      <section className="bg-parchment-deep px-6 pb-20">
+        <div className="mx-auto w-full max-w-4xl">
+          <h3 className="text-center font-heading text-2xl font-semibold text-forest">
+            Lessons you might do
+          </h3>
+          <p className="mx-auto mt-3 max-w-lg text-center text-sm leading-relaxed text-trail">
+            Each school builds its own schedule from this list, so you
+            won&apos;t do all of them.
+          </p>
+
+          <ul className="mt-8 grid grid-cols-1 items-start gap-4 sm:grid-cols-2">
+            {LESSONS.map((lesson) => (
+              <li
+                key={lesson.name}
+                className="rounded-2xl border border-border bg-surface p-5 shadow-card"
+              >
+                <p className="font-heading text-base font-semibold text-forest">
+                  {lesson.name}
+                </p>
+                <p className="mt-1.5 text-sm leading-relaxed text-trail">
+                  {lesson.detail}
+                </p>
+              </li>
+            ))}
+          </ul>
+
+          {/* Families reliably get this wrong, so it is called out plainly. */}
+          <p className="mx-auto mt-8 flex max-w-2xl items-start gap-3 rounded-2xl border border-border bg-surface px-5 py-4 text-sm leading-relaxed text-trail">
+            <span aria-hidden className="mt-0.5 shrink-0 text-base">
+              ★
+            </span>
+            <span>
+              <strong className="font-semibold text-forest">
+                About Student Service Learning hours.
+              </strong>{" "}
+              Going on the trip does not by itself earn the 10 SSL hours. You
+              earn those by passing grade 6 science and completing the companion
+              environmental project — often a study of how much energy or water
+              you use, followed by a 30-day Intent to Act pledge.
+            </span>
+          </p>
         </div>
       </section>
 
@@ -245,54 +314,56 @@ export default function OutdoorEdPage() {
           </p>
 
           <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2">
-            {CLASSES.filter((classInfo) => classInfo.outdoorEdConnection).map(
-              (classInfo) => {
-                const accent = accents[accentForGrade(classInfo.grade)];
-                const { title } = splitUnit(classInfo.unit);
+            {PUBLISHED_CLASSES.filter(
+              (classInfo) => classInfo.outdoorEdConnection,
+            ).map((classInfo) => {
+              const accent = accents[accentForGrade(classInfo.grade)];
+              const { title } = splitUnit(classInfo.unit);
 
-                return (
-                  <article
-                    key={classInfo.id}
-                    className="flex flex-col rounded-3xl border border-border bg-surface p-7 shadow-card"
-                  >
-                    <div className="flex items-center gap-4">
-                      <span
-                        className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl font-heading text-xl font-semibold ${accent.numeral}`}
-                      >
-                        {classInfo.grade}
-                      </span>
-                      <div className="min-w-0">
-                        <h3 className="font-heading text-lg font-semibold leading-tight text-forest">
-                          {classInfo.label}
-                        </h3>
-                        <p className="truncate text-xs uppercase tracking-[0.14em] text-trail-light">
-                          {title}
-                        </p>
-                      </div>
-                    </div>
-
-                    <div className={`mt-6 h-px w-full ${accent.rule} opacity-20`} />
-
-                    <p className="mt-6 text-sm leading-relaxed text-trail">
-                      {stripPlaceholder(classInfo.outdoorEdConnection ?? "")}
-                    </p>
-
-                    <Link
-                      href={`/class/${classInfo.id}`}
-                      className={`group mt-auto flex items-center gap-2 pt-7 text-sm font-semibold ${accent.cue}`}
+              return (
+                <article
+                  key={classInfo.id}
+                  className="flex flex-col rounded-3xl border border-border bg-surface p-7 shadow-card"
+                >
+                  <div className="flex items-center gap-4">
+                    <span
+                      className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl font-heading text-xl font-semibold ${accent.numeral}`}
                     >
-                      Go to {classInfo.label}
-                      <span
-                        aria-hidden
-                        className="transition-transform duration-200 group-hover:translate-x-1"
-                      >
-                        →
-                      </span>
-                    </Link>
-                  </article>
-                );
-              },
-            )}
+                      {classInfo.grade}
+                    </span>
+                    <div className="min-w-0">
+                      <h3 className="font-heading text-lg font-semibold leading-tight text-forest">
+                        {classInfo.label}
+                      </h3>
+                      <p className="truncate text-xs uppercase tracking-[0.14em] text-trail-light">
+                        {title}
+                      </p>
+                    </div>
+                  </div>
+
+                  <div
+                    className={`mt-6 h-px w-full ${accent.rule} opacity-20`}
+                  />
+
+                  <p className="mt-6 text-sm leading-relaxed text-trail">
+                    {stripPlaceholder(classInfo.outdoorEdConnection ?? "")}
+                  </p>
+
+                  <Link
+                    href={`/class/${classInfo.id}`}
+                    className={`group mt-auto flex items-center gap-2 pt-7 text-sm font-semibold ${accent.cue}`}
+                  >
+                    Go to {classInfo.label}
+                    <span
+                      aria-hidden
+                      className="transition-transform duration-200 group-hover:translate-x-1"
+                    >
+                      →
+                    </span>
+                  </Link>
+                </article>
+              );
+            })}
           </div>
         </div>
       </section>

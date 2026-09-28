@@ -1,10 +1,11 @@
 /**
  * Class roster and chatbot guardrails.
  *
- * ⚠️  ALL CONTENT BELOW IS PLACEHOLDER. Every placeholder string is prefixed
- * with "PLACEHOLDER —" so you can find them with a single search. Replace the
- * `unit`, `topics`, and `outdoorEdConnection` fields with the real curriculum;
- * the rules in buildSystemPrompt() are real and meant to stay.
+ * Grade 6 carries real curriculum, taken from the MCPS Unit 1 packet.
+ * Grade 7 is still placeholder and is therefore unpublished — every remaining
+ * stub is prefixed "PLACEHOLDER —", so `grep -rn "PLACEHOLDER —" src/` finds
+ * them. Flip its `published` flag once real content replaces them.
+ * The rules in buildSystemPrompt() are real and meant to stay.
  */
 
 export type ClassInfo = {
@@ -20,6 +21,11 @@ export type ClassInfo = {
   topics: string[];
   /** Optional tie-in to an upcoming Outdoor Ed trip. */
   outdoorEdConnection?: string;
+  /**
+   * Whether students can see this class yet. A class with placeholder
+   * curriculum stays false so nobody is shown invented course content.
+   */
+  published: boolean;
 };
 
 export const CLASSES: ClassInfo[] = [
@@ -27,22 +33,29 @@ export const CLASSES: ClassInfo[] = [
     id: "6th-grade-science",
     label: "6th Grade Science",
     grade: 6,
-    unit: "PLACEHOLDER — Earth's Systems: how water, rock, air, and living things move energy and matter around our planet.",
+    published: true,
+    /* From the MCPS Grade 6 Unit 1 packet (storyline, essential questions, and
+       DCIs LS2.A / LS2.C / ESS3.C). The packet labels this only "Unit 1" — the
+       title below is descriptive, so rename it if the course uses another. */
+    unit: "Ecosystems and Human Impact: how living and nonliving things interact in an ecosystem, and how people change the watersheds around them.",
     topics: [
-      "PLACEHOLDER — the water cycle: evaporation, condensation, precipitation, collection",
-      "PLACEHOLDER — weather vs. climate, and how to read a weather map",
-      "PLACEHOLDER — rocks and the rock cycle",
-      "PLACEHOLDER — soil layers and erosion",
-      "PLACEHOLDER — watersheds and where our local water comes from",
-      "PLACEHOLDER — science skills: observing, measuring, recording data in a notebook",
+      "ecosystems: how the living and nonliving parts of a place depend on each other",
+      "biodiversity: what the variety of species tells us about an ecosystem's health",
+      "populations and resources: competition, limiting factors, and carrying capacity",
+      "producers, consumers, and decomposers: who makes food, who eats it, who breaks it down",
+      "food webs and energy flow: how matter and energy move through an ecosystem",
+      "predator and prey: predation, competition, and mutually beneficial relationships",
+      "human impact: how people change local watersheds and the Chesapeake Bay",
+      "science skills: building and using models, collecting field data, drawing conclusions",
     ],
     outdoorEdConnection:
-      "PLACEHOLDER — On the Outdoor Ed trip we will hike to a creek, measure water temperature and speed at three spots, and look for signs of erosion along the bank.",
+      "Sixth grade spends three days and two nights at a residential outdoor environmental education site, and the lessons tie straight back to this unit. Classes usually do four or five of them: a stream or pond investigation assessing the health of a local waterway, a watershed survey using map and compass, a predator/prey simulation, patterns of settlement using GPS units, and Treasure Earth geocaching — plus evening activities and an environmental Student Service Learning project.",
   },
   {
     id: "7th-grade-science",
     label: "7th Grade Science",
     grade: 7,
+    published: false,
     unit: "PLACEHOLDER — Ecosystems and Interdependence: how living things depend on each other and on the non-living parts of their habitat.",
     topics: [
       "PLACEHOLDER — food chains, food webs, and energy pyramids",
@@ -57,9 +70,21 @@ export const CLASSES: ClassInfo[] = [
   },
 ];
 
-/** Look up a class by id. Returns undefined for an unknown id. */
+/**
+ * The classes students can actually reach. Everything user-facing — pages,
+ * routes, and the chat API — should read from this, not from CLASSES, so
+ * unpublishing a class removes it everywhere at once.
+ */
+export const PUBLISHED_CLASSES: ClassInfo[] = CLASSES.filter(
+  (classInfo) => classInfo.published,
+);
+
+/**
+ * Look up a published class by id. Unpublished classes are treated as unknown,
+ * so their pages 404 and the chat API rejects them.
+ */
 export function getClassById(id: string): ClassInfo | undefined {
-  return CLASSES.find((classInfo) => classInfo.id === id);
+  return PUBLISHED_CLASSES.find((classInfo) => classInfo.id === id);
 }
 
 /**

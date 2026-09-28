@@ -4,10 +4,11 @@ import { MotionConfig, motion, useReducedMotion } from "framer-motion";
 import Link from "next/link";
 
 import ScoutMascot from "@/components/ScoutMascot";
-import { CLASSES, type ClassInfo } from "@/lib/classes";
+import { PUBLISHED_CLASSES, type ClassInfo } from "@/lib/classes";
 import { RidgeScene, TrailMarker, TreeLine } from "@/components/Scenery";
 import {
   CHIP_CLASSES,
+  accentForGrade,
   accents,
   splitUnit,
   topicLabel,
@@ -15,8 +16,13 @@ import {
 
 export default function Home() {
   const reduceMotion = useReducedMotion();
-  const sixth = CLASSES.find((entry) => entry.grade === 6);
-  const seventh = CLASSES.find((entry) => entry.grade === 7);
+  const classes = PUBLISHED_CLASSES;
+  const isSingle = classes.length === 1;
+  /* Badge follows what's actually published, so hiding a class can't leave the
+     hero advertising a grade the site no longer shows. */
+  const gradeLabel = isSingle
+    ? `Grade ${classes[0]?.grade}`
+    : `Grades ${classes.map((entry) => entry.grade).join(" & ")}`;
 
   return (
     /* reducedMotion="user" is the load-bearing part: useReducedMotion() returns
@@ -52,7 +58,7 @@ export default function Home() {
               className="inline-flex items-center gap-2 rounded-full border border-border bg-surface px-4 py-1.5 text-xs font-medium uppercase tracking-[0.16em] text-trail"
             >
               <span className="h-1.5 w-1.5 rounded-full bg-amber" />
-              Science · Grades 6 &amp; 7
+              Science · {gradeLabel}
             </motion.p>
 
             <motion.div
@@ -119,7 +125,7 @@ export default function Home() {
               transition={{ duration: 0.5 }}
               className="mt-5 text-center text-3xl font-semibold text-forest sm:text-4xl"
             >
-              Two classes, two trails
+              {isSingle ? "Find your class" : "Two classes, two trails"}
             </motion.h2>
             <motion.p
               initial={{ opacity: 0, y: reduceMotion ? 0 : 16 }}
@@ -128,18 +134,26 @@ export default function Home() {
               transition={{ duration: 0.5, delay: 0.06 }}
               className="mx-auto mt-3 max-w-md text-center text-trail"
             >
-              Each one has its own unit going right now. Head for yours.
+              {isSingle
+                ? "Here's what's running right now. Jump in."
+                : "Each one has its own unit going right now. Head for yours."}
             </motion.p>
 
             {/* grid-cols-1 is deliberate: it emits minmax(0,1fr), so a long
               topic chip can't force the column wider than the phone. */}
-            <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2">
-              {sixth ? (
-                <ClassCard classInfo={sixth} accent="forest" delay={0} />
-              ) : null}
-              {seventh ? (
-                <ClassCard classInfo={seventh} accent="amber" delay={0.1} />
-              ) : null}
+            <div
+              className={`mt-10 grid grid-cols-1 gap-6 ${
+                isSingle ? "mx-auto max-w-md" : "sm:grid-cols-2"
+              }`}
+            >
+              {classes.map((classInfo, index) => (
+                <ClassCard
+                  key={classInfo.id}
+                  classInfo={classInfo}
+                  accent={accentForGrade(classInfo.grade)}
+                  delay={index * 0.1}
+                />
+              ))}
             </div>
           </div>
         </section>

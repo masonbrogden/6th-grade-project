@@ -3,7 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import ChatWidget from "@/components/ChatWidget";
-import { CLASSES, getClassById } from "@/lib/classes";
+import { PUBLISHED_CLASSES, getClassById } from "@/lib/classes";
 import {
   CHIP_CLASSES,
   accentForGrade,
@@ -16,7 +16,7 @@ import {
 type ClassPageProps = { params: Promise<{ classId: string }> };
 
 export function generateStaticParams() {
-  return CLASSES.map((classInfo) => ({ classId: classInfo.id }));
+  return PUBLISHED_CLASSES.map((classInfo) => ({ classId: classInfo.id }));
 }
 
 export async function generateMetadata({
@@ -96,7 +96,9 @@ export default async function ClassPage({ params }: ClassPageProps) {
               {title}
             </h2>
             {detail ? (
-              <p className="mt-2 text-sm leading-relaxed text-trail">{detail}</p>
+              <p className="mt-2 text-sm leading-relaxed text-trail">
+                {detail}
+              </p>
             ) : null}
 
             <ul className="mt-5 flex flex-wrap gap-2">
@@ -121,6 +123,38 @@ export default async function ClassPage({ params }: ClassPageProps) {
               </div>
             ) : null}
           </div>
+        </div>
+      </section>
+
+      {/* Word list */}
+      <section className="bg-parchment px-6 pb-10">
+        <div className="mx-auto w-full max-w-3xl">
+          <Link
+            href="/vocabulary"
+            className="group flex items-center gap-4 rounded-3xl border border-border bg-surface p-5 shadow-card transition-[box-shadow,border-color] duration-300 hover:border-amber hover:shadow-lift"
+          >
+            <span
+              aria-hidden
+              className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-amber-tint text-lg"
+            >
+              🔤
+            </span>
+            <span className="min-w-0 flex-1">
+              <span className="block font-heading text-base font-semibold text-forest">
+                Word list
+              </span>
+              <span className="block text-sm text-trail">
+                Every vocabulary word from Investigations in Earth Science, with
+                definitions.
+              </span>
+            </span>
+            <span
+              aria-hidden
+              className="shrink-0 text-amber-shade transition-transform duration-200 group-hover:translate-x-1"
+            >
+              →
+            </span>
+          </Link>
         </div>
       </section>
 
