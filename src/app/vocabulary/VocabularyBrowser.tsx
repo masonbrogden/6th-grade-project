@@ -94,7 +94,11 @@ export default function VocabularyBrowser({
         ) : (
           <div className="mt-10 flex flex-col gap-10">
             {sections.map(([letter, items]) => (
-              <section key={letter} id={`letter-${letter}`} className="scroll-mt-44">
+              <section
+                key={letter}
+                id={`letter-${letter}`}
+                className="scroll-mt-44"
+              >
                 <h2 className="font-heading text-2xl font-semibold text-amber-shade">
                   {letter}
                 </h2>

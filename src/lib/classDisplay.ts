@@ -12,7 +12,10 @@ export function stripPlaceholder(text: string): string {
 }
 
 /** "Earth's Systems: how water moves" -> heading + supporting line. */
-export function splitUnit(unit: string): { title: string; detail: string | null } {
+export function splitUnit(unit: string): {
+  title: string;
+  detail: string | null;
+} {
   const clean = stripPlaceholder(unit);
   const separator = clean.indexOf(": ");
   if (separator === -1) return { title: clean, detail: null };
@@ -43,7 +46,7 @@ export const accents = {
     hoverBorder: "group-hover:border-forest",
   },
   amber: {
-    numeral: "bg-amber text-warm-white",
+    numeral: "bg-amber text-forest-deep",
     chip: "bg-amber-tint text-trail-deep",
     rule: "bg-amber",
     cue: "text-amber-shade",

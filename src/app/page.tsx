@@ -191,9 +191,9 @@ export default function Home() {
                 Outdoor Ed is almost here
               </h2>
               <p className="mt-4 max-w-lg text-[0.975rem] leading-relaxed text-parchment/80">
-                Everything we&apos;re studying in class turns up out on the
-                trail — creeks to measure, meadows to survey, and a lot of fresh
-                air. Here&apos;s where we&apos;re going and what to pack.
+                Everything you learn in class shows up out on the trail — creeks
+                to test, fields to explore, and a lot of fresh air. Here&apos;s
+                where you&apos;re going and what to bring.
               </p>
 
               <motion.div
@@ -203,7 +203,7 @@ export default function Home() {
               >
                 <Link
                   href="/outdoor-ed"
-                  className="group inline-flex items-center gap-2.5 rounded-full bg-amber px-7 py-3.5 text-sm font-semibold text-warm-white shadow-lift"
+                  className="group inline-flex items-center gap-2.5 rounded-full bg-amber px-7 py-3.5 text-sm font-semibold text-forest-deep shadow-lift"
                 >
                   See the trip guide
                   <span

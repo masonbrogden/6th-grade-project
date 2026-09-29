@@ -144,8 +144,7 @@ export default async function ClassPage({ params }: ClassPageProps) {
                 Word list
               </span>
               <span className="block text-sm text-trail">
-                Every vocabulary word from Investigations in Earth Science, with
-                definitions.
+                Every word from your science word list, in plain language.
               </span>
             </span>
             <span
@@ -168,9 +167,9 @@ export default async function ClassPage({ params }: ClassPageProps) {
           />
 
           <p className="mx-auto mt-6 max-w-md text-center text-xs leading-relaxed text-trail-light">
-            Scout helps you find answers instead of handing them over, and
-            can&apos;t help with other subjects. For anything about grades, due
-            dates, or how you&apos;re feeling, talk to your teacher.
+            Scout helps you find answers instead of just giving them to you, and
+            it can only help with this class. If you need to ask about grades,
+            due dates, or how you&apos;re feeling, talk to your teacher.
           </p>
         </div>
       </section>

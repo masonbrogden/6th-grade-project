@@ -25,15 +25,14 @@ export type SchoolHoursConfig = {
   activeWeekdays: Weekday[];
 };
 
-/** ⚠️ PLACEHOLDER values — confirm the real bell schedule and timezone. */
+/** Confirmed school schedule: 8:00 AM to 3:15 PM, Monday through Friday. */
 export const SCHOOL_HOURS: SchoolHoursConfig = {
-  // ⚠️ TEMPORARY — the gate is held open so the site is usable at any hour
-  //    while it's being built. Set this to false before students use it, and
-  //    the start/end/activeWeekdays below take over again.
-  alwaysOpen: true,
+  // Set to true to bypass the schedule while developing, so the site answers at
+  // any hour. Must be false in production.
+  alwaysOpen: false,
   timeZone: "America/New_York",
   start: "08:00",
-  end: "15:30",
+  end: "15:15",
   activeWeekdays: ["Mon", "Tue", "Wed", "Thu", "Fri"],
 };
 

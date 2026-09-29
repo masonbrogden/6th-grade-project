@@ -52,8 +52,8 @@ export default function VocabularyPage() {
           </div>
 
           <p className="mt-5 max-w-lg text-pretty leading-relaxed text-trail">
-            Every word from the course vocabulary list, with the definition your
-            class uses. Search for one, or jump to a letter.
+            Every word from your science word list, written to be easy to read.
+            Search for one, or jump to a letter.
           </p>
         </div>
       </section>
@@ -74,12 +74,12 @@ export default function VocabularyPage() {
             Still stuck on a word?
           </h2>
           <p className="max-w-md text-[0.975rem] leading-relaxed text-parchment/80">
-            Ask Scout to explain it a different way — it won&apos;t give you test
-            answers, but it will help you work out what a word means.
+            Ask Scout to explain it another way. It won&apos;t give you test
+            answers, but it will help you figure out what a word means.
           </p>
           <Link
             href="/class/6th-grade-science"
-            className="group inline-flex items-center gap-2.5 rounded-full bg-amber px-7 py-3.5 text-sm font-semibold text-warm-white shadow-lift"
+            className="group inline-flex items-center gap-2.5 rounded-full bg-amber px-7 py-3.5 text-sm font-semibold text-forest-deep shadow-lift"
           >
             Ask Scout
             <span

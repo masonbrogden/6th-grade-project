@@ -37,19 +37,19 @@ export const CLASSES: ClassInfo[] = [
     /* From the MCPS Grade 6 Unit 1 packet (storyline, essential questions, and
        DCIs LS2.A / LS2.C / ESS3.C). The packet labels this only "Unit 1" — the
        title below is descriptive, so rename it if the course uses another. */
-    unit: "Ecosystems and Human Impact: how living and nonliving things interact in an ecosystem, and how people change the watersheds around them.",
+    unit: "Ecosystems and Human Impact: how living and nonliving things depend on each other, and how people change the creeks, rivers, and bay near you.",
     topics: [
-      "ecosystems: how the living and nonliving parts of a place depend on each other",
-      "biodiversity: what the variety of species tells us about an ecosystem's health",
-      "populations and resources: competition, limiting factors, and carrying capacity",
+      "ecosystems: how living and nonliving things in one place need each other",
+      "biodiversity: how many different kinds of living things a place has, and why that matters",
+      "populations: how living things compete for food, water, and space, and why a place can only hold so many",
       "producers, consumers, and decomposers: who makes food, who eats it, who breaks it down",
-      "food webs and energy flow: how matter and energy move through an ecosystem",
-      "predator and prey: predation, competition, and mutually beneficial relationships",
-      "human impact: how people change local watersheds and the Chesapeake Bay",
-      "science skills: building and using models, collecting field data, drawing conclusions",
+      "food webs: how food and energy move from one living thing to the next",
+      "predator and prey: how animals hunt, compete, and sometimes help each other",
+      "human impact: how people change the creeks, rivers, and the Chesapeake Bay",
+      "science skills: making models, taking measurements outside, and figuring out what your data means",
     ],
     outdoorEdConnection:
-      "Sixth grade spends three days and two nights at a residential outdoor environmental education site, and the lessons tie straight back to this unit. Classes usually do four or five of them: a stream or pond investigation assessing the health of a local waterway, a watershed survey using map and compass, a predator/prey simulation, patterns of settlement using GPS units, and Treasure Earth geocaching — plus evening activities and an environmental Student Service Learning project.",
+      "You get three days and two nights at an outdoor education site, and almost everything you do out there comes straight from this unit. Your class picks four or five lessons. You might test a stream or pond to see how healthy it is, hike the watershed with a map and compass, play a predator and prey game, use GPS units to find good places to build a town, or go geocaching to hunt for natural resources. There are evening activities too, plus a service project to help the environment.",
   },
   {
     id: "7th-grade-science",
@@ -105,12 +105,18 @@ export function buildSystemPrompt(classInfo: ClassInfo): string {
 You are talking with ${classInfo.grade}th graders, about ${classInfo.grade === 6 ? "11 or 12" : "12 or 13"} years old.
 
 ## How you talk
-Be warm, patient, and encouraging. Use short sentences and everyday words. When
-a science word is new, explain the idea in plain language first, then name the
-term. Keep most answers to 2-5 sentences. Ask one question at a time so it feels
-like a conversation, not a lecture. Celebrate good thinking, not just right
-answers. Never be sarcastic and never talk down to a student. An occasional
-emoji is fine; don't overdo it.
+Be warm, patient, and encouraging. Talk straight to the student as "you" — not
+about students in general. Celebrate good thinking, not just right answers.
+Never be sarcastic and never talk down to anyone. An occasional emoji is fine;
+don't overdo it.
+
+Write at about a fifth-grade reading level — a little easier than the grade you
+are talking to, so nobody has to work to read you. Keep sentences short, around
+fifteen words. Use the everyday word over the formal one: "use up" not "deplete",
+"break down" not "decompose", "how many" not "quantity". When a science word is
+new, explain the idea in plain words first, then name the term and use it. Keep
+most answers to 2-5 sentences, and ask one question at a time so it feels like a
+conversation, not a lecture.
 
 Write in plain sentences. The chat window shows your words exactly as you type
 them, so Markdown does not render — it just looks like clutter. Never use

@@ -14,7 +14,7 @@ import {
 export const metadata: Metadata = {
   title: "Outdoor Ed — Class, but outside",
   description:
-    "Where we're going, what to pack, and how the trip ties into class.",
+    "Where you're going, what to bring, and how the trip ties back to class.",
 };
 
 /**
@@ -24,11 +24,11 @@ export const metadata: Metadata = {
  */
 const TRIP = {
   dates: "PLACEHOLDER — dates to be confirmed",
-  length: "Three days and two nights, staying overnight on site",
+  length: "Three days and two nights. You sleep there.",
   place:
-    "One of three environmental education sites. The LE Smith Center is run by MCPS; the other two are privately owned sites MCPS contracts each year. Your school will tell you which one you are assigned.",
+    "One of three camps. The LE Smith Center is run by MCPS, and the other two are run by outside groups that work with MCPS. Your school will tell you which one you are going to.",
   staffing:
-    "Your own teachers come along and teach alongside the site's outdoor environmental educator.",
+    "Your teachers come with you. They teach along with the camp's outdoor science teacher.",
   leaving: "PLACEHOLDER — departure time and pickup point to be confirmed",
   returning: "PLACEHOLDER — return time to be confirmed",
   bring: [
@@ -42,52 +42,52 @@ const TRIP = {
   leave: "PLACEHOLDER — your school will confirm what to leave at home.",
 };
 
-/** The lesson menu from the MCPS program material. Schools pick four or five. */
+/** The lesson menu from the MCPS program material. Your school picks four or five. */
 const LESSONS = [
   {
     name: "Stream/Pond Investigation",
     detail:
-      "Investigate the interactions within the local watershed and work in groups to assess the health of a nearby stream or pond.",
+      "You and your group test a stream or pond nearby to find out how healthy it is, and what lives in it.",
   },
   {
     name: "Exploring the Watershed Using Map and Compass",
     detail:
-      "Survey the surrounding forest and riparian buffers in the local watershed, navigating by map and compass.",
+      "You use a map and compass to find your way through the woods and along the creek, checking what grows there.",
   },
   {
     name: "Confidence Course",
     detail:
-      "A series of mentally and physically challenging team and individual events built to strengthen teamwork, cooperation, and self-esteem.",
+      "A set of challenges you take on alone and with your team. They are hard on purpose, and they build trust.",
   },
   {
     name: "Predator/Prey Relationships",
     detail:
-      "Explore the predator-prey relationships animals exhibit in our local ecosystem through an outdoor simulation.",
+      "An outdoor game where you play predators and prey, so you can see how hunting and hiding really works.",
   },
   {
     name: "Patterns of Settlement",
     detail:
-      "Collect environmental and geographic data using GPS units to decide which location has the best settlement potential.",
+      "You use GPS units to explore a few spots, then use what you find to pick the best place to build a town.",
   },
   {
     name: "Treasure Earth",
     detail:
-      "Work in groups to collect data on our natural resources through geocaching.",
+      "A treasure hunt with GPS. You and your group track down natural resources and record what you find.",
   },
   {
     name: "Site History Lessons",
     detail:
-      "Lessons drawn from the history of the outdoor education sites themselves.",
+      "Stories and lessons about what happened on this land long before it was a camp.",
   },
   {
     name: "Student Service Learning",
     detail:
-      "An environmental stewardship lesson — habitat improvement, energy conservation, or protecting natural resources.",
+      "A project to help the environment. You might fix up a habitat, save energy, or protect a natural resource.",
   },
   {
     name: "Evening Activities",
     detail:
-      "Instruction does not stop at sundown. After dinner there are indoor and outdoor activities chosen by your school.",
+      "The day is not over after dinner. Your school picks games and activities for the evening, inside and out.",
   },
 ];
 
@@ -140,9 +140,10 @@ export default function OutdoorEdPage() {
               Class, but outside.
             </h1>
             <p className="mx-auto mt-5 max-w-lg text-pretty text-base leading-relaxed text-trail sm:text-lg">
-              Everything we&apos;ve been studying is already out there — in the
-              creek, under the rocks, and across the meadow. Here&apos;s where
-              we&apos;re going, what to pack, and how it all ties back to class.
+              Everything you&apos;ve been learning about is already out there —
+              in the creek, under the rocks, and across the field. Here&apos;s
+              where you&apos;re going, what to bring, and how it ties back to
+              class.
             </p>
           </div>
         </div>
@@ -168,10 +169,10 @@ export default function OutdoorEdPage() {
             </span>
             <span>
               <strong className="font-semibold">
-                Dates and packing list aren&apos;t final.
+                The dates and packing list aren&apos;t final yet.
               </strong>{" "}
-              The program details below are from MCPS, but times and what to
-              bring come from your school — don&apos;t pack from this page yet.
+              Everything else here comes from MCPS, but your school picks the
+              times and the list — so don&apos;t pack from this page yet.
             </span>
           </p>
 
@@ -236,7 +237,7 @@ export default function OutdoorEdPage() {
                   ["Who teaches", TRIP.staffing],
                   [
                     "Lessons",
-                    "Schools pick four or five of the lessons below, plus evening activities.",
+                    "Your class picks four or five of the lessons below, plus evening activities.",
                   ],
                 ].map(([label, value]) => (
                   <div key={label}>
@@ -261,8 +262,7 @@ export default function OutdoorEdPage() {
             Lessons you might do
           </h3>
           <p className="mx-auto mt-3 max-w-lg text-center text-sm leading-relaxed text-trail">
-            Each school builds its own schedule from this list, so you
-            won&apos;t do all of them.
+            Your school picks from this list, so you won&apos;t do all of them.
           </p>
 
           <ul className="mt-8 grid grid-cols-1 items-start gap-4 sm:grid-cols-2">
@@ -288,12 +288,12 @@ export default function OutdoorEdPage() {
             </span>
             <span>
               <strong className="font-semibold text-forest">
-                About Student Service Learning hours.
+                About your SSL hours.
               </strong>{" "}
-              Going on the trip does not by itself earn the 10 SSL hours. You
-              earn those by passing grade 6 science and completing the companion
-              environmental project — often a study of how much energy or water
-              you use, followed by a 30-day Intent to Act pledge.
+              Going on the trip does not earn you the 10 SSL hours by itself.
+              You get those by passing grade 6 science and finishing the project
+              that goes with it — usually a look at how much energy or water you
+              use at home, then a 30-day pledge to change something.
             </span>
           </p>
         </div>
@@ -310,7 +310,7 @@ export default function OutdoorEdPage() {
             What your class will be doing
           </h2>
           <p className="mx-auto mt-3 max-w-md text-center text-trail">
-            Each class takes its current unit out into the field.
+            Here is how what you are learning right now shows up out there.
           </p>
 
           <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2">
@@ -382,13 +382,13 @@ export default function OutdoorEdPage() {
             Questions before we go?
           </h2>
           <p className="max-w-md text-[0.975rem] leading-relaxed text-parchment/80">
-            Ask Scout about the science we&apos;ll be doing out there. For
-            anything about permission slips, medications, or who you&apos;re
+            Ask Scout about the science you&apos;ll be doing out there. For
+            anything about permission slips, medicine, or who you&apos;re
             bunking with, ask your teacher.
           </p>
           <Link
             href="/"
-            className="group inline-flex items-center gap-2.5 rounded-full bg-amber px-7 py-3.5 text-sm font-semibold text-warm-white shadow-lift"
+            className="group inline-flex items-center gap-2.5 rounded-full bg-amber px-7 py-3.5 text-sm font-semibold text-forest-deep shadow-lift"
           >
             Pick your class
             <span

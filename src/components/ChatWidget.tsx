@@ -199,7 +199,7 @@ export default function ChatWidget({
               maxLength={MAX_CHARS}
               disabled={isClosed}
               placeholder={
-                isClosed ? "Scout is off the trail" : "Ask Scout a question…"
+                isClosed ? "Scout is off the trail" : "Ask Scout anything about science class…"
               }
               onChange={(event) => setDraft(event.target.value)}
               onKeyDown={(event) => {
@@ -215,7 +215,7 @@ export default function ChatWidget({
               disabled={!draft.trim() || isSending || isClosed}
               whileHover={reduceMotion ? undefined : { y: -2 }}
               whileTap={{ scale: 0.97 }}
-              className="flex h-11 shrink-0 items-center gap-2 rounded-full bg-amber px-5 text-sm font-semibold text-warm-white transition-opacity disabled:opacity-40"
+              className="flex h-11 shrink-0 items-center gap-2 rounded-full bg-amber px-5 text-sm font-semibold text-forest-deep transition-opacity disabled:opacity-40"
             >
               Send
               <span aria-hidden>→</span>

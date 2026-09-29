@@ -62,13 +62,13 @@ check([
     expected: true,
   },
   {
-    iso: "2026-09-30T19:29:00Z",
-    label: "Wed 15:29 EDT — last minute open",
+    iso: "2026-09-30T19:14:00Z",
+    label: "Wed 15:14 EDT — last minute open",
     expected: true,
   },
   {
-    iso: "2026-09-30T19:30:00Z",
-    label: "Wed 15:30 EDT — closing minute",
+    iso: "2026-09-30T19:15:00Z",
+    label: "Wed 15:15 EDT — closing minute",
     expected: false,
   },
 ]);
