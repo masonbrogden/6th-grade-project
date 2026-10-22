@@ -10,10 +10,7 @@
 export type Weekday = "Sun" | "Mon" | "Tue" | "Wed" | "Thu" | "Fri" | "Sat";
 
 export type SchoolHoursConfig = {
-  /**
-   * Bypass the gate entirely and treat every moment as open.
-   * Intended for local development only — see the TEMPORARY note below.
-   */
+  /** Bypass the gate entirely and treat every moment as open. */
   alwaysOpen: boolean;
   /** IANA timezone for the school. */
   timeZone: string;
@@ -27,9 +24,9 @@ export type SchoolHoursConfig = {
 
 /** Confirmed school schedule: 8:00 AM to 3:15 PM, Monday through Friday. */
 export const SCHOOL_HOURS: SchoolHoursConfig = {
-  // Set to true to bypass the schedule while developing, so the site answers at
-  // any hour. Must be false in production.
-  alwaysOpen: false,
+  // Scout answers at any hour, so students can study at home in the evening
+  // and on weekends. Set to false to limit Scout to the schedule below.
+  alwaysOpen: true,
   timeZone: "America/New_York",
   start: "08:00",
   end: "15:15",

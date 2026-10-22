@@ -23,7 +23,11 @@ export const metadata: Metadata = {
  * banner in the trip section; delete the banner once none are left.
  */
 const TRIP = {
-  dates: "PLACEHOLDER — dates to be confirmed",
+  dates: "Monday, November 16 to Friday, November 20",
+  sessions: [
+    "Session 1 (last names A–J): Monday, November 16 to midday Wednesday, November 18.",
+    "Session 2 (last names K–Z): midday Wednesday, November 18 to Friday, November 20.",
+  ],
   length: "Three days and two nights. You sleep there.",
   place:
     "One of three camps. The LE Smith Center is run by MCPS, and the other two are run by outside groups that work with MCPS. Your school will tell you which one you are going to.",
@@ -169,9 +173,9 @@ export default function OutdoorEdPage() {
             </span>
             <span>
               <strong className="font-semibold">
-                The dates and packing list aren&apos;t final yet.
+                The times and packing list aren&apos;t final yet.
               </strong>{" "}
-              Everything else here comes from MCPS, but your school picks the
+              Everything else here is confirmed, but your school picks the
               times and the list — so don&apos;t pack from this page yet.
             </span>
           </p>
@@ -185,8 +189,22 @@ export default function OutdoorEdPage() {
                 When &amp; where
               </h3>
               <dl className="mt-5 flex flex-col gap-4 text-sm">
+                <div>
+                  <dt className="text-xs font-semibold uppercase tracking-[0.16em] text-trail-light">
+                    Dates
+                  </dt>
+                  <dd className="mt-1 leading-relaxed text-trail">
+                    {TRIP.dates}
+                  </dd>
+                  <dd className="mt-2 flex flex-col gap-2 leading-relaxed text-trail">
+                    {TRIP.sessions.map((session) => (
+                      <span key={session} className="block">
+                        {session}
+                      </span>
+                    ))}
+                  </dd>
+                </div>
                 {[
-                  ["Dates", TRIP.dates],
                   ["Place", TRIP.place],
                   ["Leaving", TRIP.leaving],
                   ["Back", TRIP.returning],

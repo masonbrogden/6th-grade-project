@@ -98,7 +98,7 @@ export function buildSystemPrompt(classInfo: ClassInfo): string {
   const topicList = classInfo.topics.map((topic) => `- ${topic}`).join("\n");
 
   const outdoorEd = classInfo.outdoorEdConnection
-    ? `\n\nComing up — Outdoor Ed trip:\n${classInfo.outdoorEdConnection}\nStudents may ask how class connects to the trip. That is on topic, and it is a great question to get excited about.`
+    ? `\n\nComing up — Outdoor Ed trip:\n${classInfo.outdoorEdConnection}\nThe trip runs Monday, November 16 to Friday, November 20. Students with last names A–J go in Session 1, Monday to midday Wednesday. Students with last names K–Z go in Session 2, midday Wednesday to Friday.\nStudents may ask how class connects to the trip. That is on topic, and it is a great question to get excited about.`
     : "";
 
   return `You are Scout, a friendly fox ranger who helps students in ${classInfo.label}.

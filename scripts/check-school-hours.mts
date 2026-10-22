@@ -100,6 +100,6 @@ console.log("\nAll checks passed.\n");
 if (overrideWasOn) {
   console.log(
     "Note: alwaysOpen is ON in src/lib/hours.ts, so the live site ignores the\n" +
-      "schedule above and answers at any hour. Set it to false before students use it.\n",
+      "schedule above and answers at any hour. Set it to false to enforce the schedule.\n",
   );
 }
